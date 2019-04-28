@@ -25,9 +25,9 @@ class MyAgent(SparkAgent):
         action.speed["HeadYaw"] = 0.1
         action.stiffness["LShoulderPitch"] = 0.0
 
-        angle = perception.joint["HeadYaw"]
-        temperature = perception.joint_temperature["HeadYaw"]
-        print 'HeadYaw angle: ' + str(angle) + ' temperature: ' + str(temperature)
+#        angle = perception.joint["HeadYaw"]
+#        temperature = perception.joint_temperature["HeadYaw"]
+#        print 'HeadYaw angle: ' + str(angle) + ' temperature: ' + str(temperature)
 
         return action
 
