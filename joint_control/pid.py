@@ -18,7 +18,6 @@ import numpy as np
 from collections import deque
 from spark_agent import SparkAgent, JOINT_CMD_NAMES
 
-
 class PIDController(object):
     '''a discretized PID controller, it controls an array of servos,
        e.g. input is an array and output is also an array
@@ -46,6 +45,8 @@ class PIDController(object):
         '''
         self.y = deque(self.y, delay + 1)
 
+
+
     def control(self, target, sensor):
         '''apply PID control
         @param target: reference values
@@ -53,6 +54,21 @@ class PIDController(object):
         @return control signal
         '''
         # YOUR CODE HERE
+
+        error = target - sensor
+
+        #see lecture
+        term1 = np.dot((self.Kp + (self.Ki * self.dt) + (self.Kd / self.dt)), error)
+        term2 = np.dot((self.Kp + (2* self.Kd/self.dt)), self.e1)
+        term3 = np.dot((self.Kd / self.dt), self.e2)
+
+        self.u = self.u + term1 + term2 + term3
+
+        self.e1 = self.e2   #previous new error becomes old error
+        self.e2 = error     #set new error
+
+        #predict delay
+        self.y.append(self, self.u)
 
         return self.u
 
