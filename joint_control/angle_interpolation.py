@@ -96,10 +96,10 @@ class AngleInterpolationAgent(PIDAgent):
         return target_joints
 
 def bezier(start, p1, p2, end, t) :
-    term0 = (1 - t) ** 3 * start
-    term1 = 3 * (1 - t) ** 2 * t * p1
-    term2 = 3 * (1 - t) * t ** 2 * p2
-    term3 = t ** 3 * end
+    term0 = (1 - t)**3 * start
+    term1 = 3 * (1 - t)**2 * t * p1
+    term2 = 3 * (1 - t) * t**2 * p2
+    term3 = t**3 * end
 
     return term0 + term1 + term2 + term3
 
