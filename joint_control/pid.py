@@ -64,11 +64,16 @@ class PIDController(object):
 
         self.u = self.u + term1 + term2 + term3
 
-        self.e1 = self.e2   #previous new error becomes old error
-        self.e2 = error     #set new error
+        self.e2 = self.e1   #previous new error e1 becomes old error e2
+        self.e1 = error     #set new error
+
 
         #predict delay
-        self.y.append(self, self.u)
+        speed = (self.e2 - self.e1) / self.dt
+
+        #speed = ((self.u - sensor) + self.y.popleft() - sensor) / 2*self.dt
+        prediction =  self.u + speed*self.dt
+        self.y.append(prediction)
 
         return self.u
 
