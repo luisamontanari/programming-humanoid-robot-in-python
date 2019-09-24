@@ -78,8 +78,8 @@ class AngleInterpolationAgent(PIDAgent):
 
                         current_angle = keylist[curr][0]
                         next_angle = keylist[next][0]
-                        p1 = current_angle + keylist[curr][2][2]        #dAngle of Handle1 of the curr point
-                        p2 = next_angle - keylist[next][1][2]           #dAngle of Handle2 of the next point
+                        p1 = current_angle + keylist[curr][2][2]        #dAngle of Handle2 of the curr point
+                        p2 = next_angle - keylist[next][1][2]           #dAngle of Handle1 of the next point
 
                         bezier_val = bezier(current_angle, p1, p2, next_angle, t)
                         bezier_time = bezier(curr_time, t1, t2, next_time, t)

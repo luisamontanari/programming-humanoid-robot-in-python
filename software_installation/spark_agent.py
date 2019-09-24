@@ -233,6 +233,7 @@ class SparkAgent(object):
     def send_command(self, commands):
         if self.sync_mode:
             commands += '(syn)'
+        stuff = struct.pack("!I", len(commands))
         self.socket.sendall(struct.pack("!I", len(commands)) + commands)
 
     def connect(self, simspark_ip, simspark_port):

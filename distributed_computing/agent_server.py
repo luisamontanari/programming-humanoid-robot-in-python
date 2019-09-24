@@ -23,14 +23,16 @@ class ServerAgent(InverseKinematicsAgent):
     '''ServerAgent provides RPC service
     '''
     # YOUR CODE HERE
-    
     def get_angle(self, joint_name):
         '''get sensor value of given joint'''
         # YOUR CODE HERE
-    
+        angle = self.perception.joint[joint_name]
+        return angle
+
     def set_angle(self, joint_name, angle):
         '''set target angle of joint for PID controller
         '''
+        self.perception.joint[joint_name] = angle
         # YOUR CODE HERE
 
     def get_posture(self):
