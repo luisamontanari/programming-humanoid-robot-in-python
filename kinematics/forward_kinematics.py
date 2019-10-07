@@ -43,6 +43,7 @@ class ForwardKinematicsAgent(AngleInterpolationAgent):
                        'RLeg': ['RHipYawPitch', 'RHipRoll', 'RHipPitch', 'RKneePitch', 'RAnklePitch', 'RAnkleRoll']
                        }
 
+        #from http://doc.aldebaran.com/2-1/family/nao_h21/links_h21.html
         self.offsets = {'HeadYaw': [0, 0, 126.5],
                         'HeadPitch': [0, 0, 0],
                         'LShoulderPitch': [0, 98, 100],
