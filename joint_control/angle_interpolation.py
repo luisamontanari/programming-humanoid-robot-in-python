@@ -52,7 +52,7 @@ class AngleInterpolationAgent(PIDAgent):
         keys [k][j] --> specific key --> contains angle, handle1, Handle2
         '''
 
-        mod_time = perception.time % 4.60000
+        mod_time = perception.time - self.init_time
 
         for k in range(0, len(times)) :
             keylist = keys[k]
