@@ -90,14 +90,17 @@ class ForwardKinematicsAgent(AngleInterpolationAgent):
         #case distinction: Roll: x-axis, Pitch: y-axis, Yaw: z-axis
 
         if 'Roll' in joint_name:
-            T = np.array([[1, 0, 0, 0], [0, cos, -sin, 0], [0, sin, cos, 0], [0, 0, 0, 1]])
+            R_x = np.array([[1, 0, 0, 0], [0, cos, -sin, 0], [0, sin, cos, 0], [0, 0, 0, 1]])
+            T = np.dot(T, R_x)
 
         if 'Pitch' in joint_name:
-            T = np.array([[cos, 0, sin, 0], [0, 1, 0, 0], [-sin, 0, cos, 0], [0, 0, 0, 1]])
+            R_y = np.array([[cos, 0, sin, 0], [0, 1, 0, 0], [-sin, 0, cos, 0], [0, 0, 0, 1]])
+            T = np.dot(T, R_y)
 
         if 'Yaw' in joint_name:
-            T = np.array([[cos, sin, 0, 0], [-sin, cos, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
-
+            R_z = np.array([[cos, sin, 0, 0], [-sin, cos, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
+            T = np.dot(T, R_z)
+            
         #fill last line with joint offsets
         for i in range(0, 3):
             T[3][i] = self.offsets[joint_name][i]
